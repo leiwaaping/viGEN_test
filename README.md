@@ -37,7 +37,7 @@ Current version: RSEM v1.2.25
 preparation:   
 1) fastq file(paired end):take SRR1946637 as an example in here.sorted in **input** directory . 
 2) reference: download Rsem_ref_hg19.zip（https://drive.google.com/drive/folders/0B3-883ME4sP3dDF3ZllrN1JSWmM?usp=sharing） through google drive，unzip it,should be in the same directory with **input** directory .   
-FOR more detail please see RSEM tutorial（https://github.com/bli25broad/RSEM_tutorial） in case you want to use your own ref file.
+FOR more detail please see RSEM tutorial（https://github.com/bli25broad/RSEM_tutorial） in case you want to use your own ref file.(rsem-prepare-reference + ref file + gtt file)
 
 3) **bowtie**: there is an bowtie installing package followed but you can also use your own bowtie,type "whereis bowtie" and get it path,change it in command,then it also works.
 
@@ -64,6 +64,11 @@ option：
 Output files:   
 In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named SRR1946637_un_1.fq and SRR1946637_un_2.fq. They consist of the reads that did not align to the human reference.
 
+  
+if error:   
+Invalid number of arguments!  
+NAME  
+    rsem-calculate-expression  
 
 ## 3.Create viral reference
 files download in https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0 from google drive.
