@@ -60,19 +60,24 @@ option：
   -p ：number of thread  
   --keep-intermediate-files : continue after unexcepted stop  
   RSEM can used for paired end and single fastq,as well as SAM/BAM files, for more detail please check tutourial:http://deweylab.biostat.wisc.edu/rsem/rsem-calculate-expression.html 
-> SYNOPSIS  
-     $rsem-calculate-expression [options] upstream_read_file(s) reference_name sample_name  
-     $rsem-calculate-expression [options] --paired-end upstream_read_file(s) downstream_read_file(s) reference_name sample_name  
-     $rsem-calculate-expression [options] --sam/--bam [--paired-end] input reference_name sample_name  
+
      
 Output files:   
 In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named SRR1946637_un_1.fq and SRR1946637_un_2.fq. They consist of the reads that did not align to the human reference.
 
   
 if error:   
-Invalid number of arguments!  
+> Invalid number of arguments!  
 NAME  
-    rsem-calculate-expression  
+    rsem-calculate-expression   
+    
+It reminds you that your something wrong with your arguments or option,please ensure you have set right argument and carefully check all -option spelling  
+
+> SYNOPSIS  
+     $rsem-calculate-expression [options] upstream_read_file(s) reference_name sample_name  
+     $rsem-calculate-expression [options] --paired-end upstream_read_file(s) downstream_read_file(s) reference_name sample_name  
+     $rsem-calculate-expression [options] --sam/--bam [--paired-end] input reference_name sample_name  
+
 
 ## 3.Create viral reference
 files download in https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0 from google drive.
@@ -81,10 +86,13 @@ files download in https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcE
 > In case user is interested in creating a reference index the reference file on their own, this is the command to use: ```./bowtie2-build /Path/viruses.fa virus.bowtie2.refB```
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as Complete_Sequence_info.csv 
 
-## 4.Align the unmapped fastq files to the viral reference  [bowtie2]
+## 4.Align the unmapped fastq files to the viral reference 
+- ***software***: [bowtie2] or [STAR] ,[Samtools]
+- ***process***: normal samtools process, you can use the shell script provided ```viral.pipeline_public_final.sh``` that encompasses all of these steps.
 
 normal samtools process:  
 ```
+
 ```
 
 
