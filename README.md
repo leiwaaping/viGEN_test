@@ -45,16 +45,20 @@ FOR more detail please see RSEM tutorial（https://github.com/bli25broad/RSEM_tu
 $ whereis bowtie
 bowtie: /path/to/bin/bowtie 
 $ mkdir output
-$ ./RSEM_tutorial/software/RSEM-1.2.25/rsem-calculate-expression --paired-end -p 20 --output-genome-bam --keep-intermediate files --bowtie-path /path/to/bin --append-names --estimate-rspd --time input/SRR1946637_1.fastq input/SRR1946637_2.fastq Rsem_ref_hg19/Rsem_ref_hg19 output/SRR1946637  
+$ ./RSEM_tutorial/software/RSEM-1.2.25/rsem-calculate-expression --paired-end -p 20 --output-genome-bam --keep-intermediate-files --bowtie-path /path/to/bin --append-names --estimate-rspd --time input/SRR1946637_1.fastq input/SRR1946637_2.fastq Rsem_ref_hg19/Rsem_ref_hg19 output/SRR1946637  
   
 /path/to/bin/bowtie -q --phred33-quals -n 2 -e 99999999 -l 25 -I 1 -X 1000 -p 20 -a -m 200 -S Rsem_ref_hg19/Rsem_ref_hg19 -1 input/SRR1946637_1.fastq -2 input/SRR1946637_2.fastq | samtools view -S -b -o output/SRR1946637.temp/SRR1946637.bam -
 Warning: Exhausted best-first chunk memory for read SRR1946637.1078913 HWI-ST1106:205:C0MLWACXX:4:1104:15798:26529 length=100/1 (patid 1078912); skipping read  
 ……  
+
+#single end
+#./RSEM_tutorial/software/RSEM-1.2.25/rsem-calculate-expression -p 20 --output-genome-bam --keep-intermediate-files --bowtie-path /path/to/bin --append-names --estimate-rspd --time input/SRR5275286.fastq Rsem_ref_hg19/Rsem_ref_hg19 output/SRR5275286
   
 ```
 
 option：  
-  -p ：number of thread
+  -p ：number of thread  
+  --keep-intermediate-files : continue after unexcepted stop  
   RSEM can used for paired end and single fastq,as well as SAM/BAM files, for more detail please check tutourial:http://deweylab.biostat.wisc.edu/rsem/rsem-calculate-expression.html 
 > SYNOPSIS  
      $rsem-calculate-expression [options] upstream_read_file(s) reference_name sample_name  
