@@ -33,7 +33,7 @@ Current version: RSEM v1.2.25
   
     
       
-## 2. Alignment to human reference （cost times）
+## 2-1. Alignment to human reference （cost times）
 preparation:   
 1) fastq file(paired end):take SRR1946637 as an example in here.sorted in **input** directory . 
 2) reference: download Rsem_ref_hg19.zip（https://drive.google.com/drive/folders/0B3-883ME4sP3dDF3ZllrN1JSWmM?usp=sharing） through google drive，unzip it,should be in the same directory with **input** directory .   
@@ -79,15 +79,15 @@ It reminds you that your something wrong with your arguments or option,please en
      $rsem-calculate-expression [options] --sam/--bam [--paired-end] input reference_name sample_name  
 
 
-## 3.Create viral reference
+## 2-2-1.Create viral reference
 files download in https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0 from google drive.
 - ***reference file***: writers obtained reference genomes of all known and sequenced human viruses obtained from NCBI (as of Sep 2015), and merged them into one file (referred to as the "viral reference file") in fasta file format. Merge all virus fasta file into one big fasta file called **viruses.fa**
 - ***index file***: indexed the viral reference file, so that these files are ready for alignment tools Bowtie2 (folder name: virus.bowtie2.refB) or BWA (folder name: viral.bwa.ref)
 > In case user is interested in creating a reference index the reference file on their own, this is the command to use: ```./bowtie2-build /Path/viruses.fa virus.bowtie2.refB```
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as Complete_Sequence_info.csv 
 
-## 4.Align the unmapped fastq files to the viral reference 
-- ***software***: [bowtie2] or [STAR] ,[Samtools]
+## 2-2-2.Align the unmapped fastq files to the viral reference 
+- ***software***: [bowtie2] ,[Samtools]
 - ***process***: normal samtools process, you can use the shell script provided ```viral.pipeline_public_final.sh``` that encompasses all of these steps.
 
 normal samtools process:  
@@ -95,6 +95,8 @@ normal samtools process:
 
 ```
 
+
+***you can choose method 2-1(align to humman ref first and get unmap.fastq, then re-align to viral reference to get an bam file )  or method 2-2 (align to vrial refernece directory to get the bam file),or both***
 
 ## 5.Get genome level matrix file and find top viruses
 
