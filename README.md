@@ -56,7 +56,11 @@ Warning: Exhausted best-first chunk memory for read SRR1946637.1078913 HWI-ST110
 option：  
   -p ：number of thread
   RSEM can used for paired end and single fastq,as well as SAM/BAM files, for more detail please check tutourial:http://deweylab.biostat.wisc.edu/rsem/rsem-calculate-expression.html 
-
+> SYNOPSIS  
+     $rsem-calculate-expression [options] upstream_read_file(s) reference_name sample_name  
+     $rsem-calculate-expression [options] --paired-end upstream_read_file(s) downstream_read_file(s) reference_name sample_name  
+     $rsem-calculate-expression [options] --sam/--bam [--paired-end] input reference_name sample_name  
+     
 Output files:   
 In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named SRR1946637_un_1.fq and SRR1946637_un_2.fq. They consist of the reads that did not align to the human reference.
 
