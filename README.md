@@ -100,5 +100,3 @@ it happens when you deal with a group project,did not effect sigle task,you need
 
 ***you can choose method 2-1(align to humman ref first and get unmap.fastq, then re-align to viral reference to get an bam file )  or method 2-2 (align to vrial refernece directory to get the bam file),or both***
 
-## 5.Get genome level matrix file and find top viruses
-
