@@ -100,3 +100,39 @@ it happens when you deal with a group project,did not effect sigle task,you need
 
 ***you can choose method 2-1(align to humman ref first and get unmap.fastq, then re-align to viral reference to get an bam file )  or method 2-2 (align to vrial refernece directory to get the bam file),or both***
 
+## change an reference file
+
+```
+#build index
+./bowtie2-build /Path/to/new_viruses.fa new_virus.bowtie2.ref
+Wrote 12362996 bytes to primary EBWT file: hervquant_virus.bowtie2.ref.rev.1.bt2
+Wrote 5969992 bytes to secondary EBWT file: hervquant_virus.bowtie2.ref.rev.2.bt2
+Re-opening _in1 and _in2 as input streams
+Returning from Ebwt constructor
+Headers:
+    len: 23879943
+    bwtLen: 23879944
+    sz: 5969986
+    bwtSz: 5969986
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 20
+    eftabSz: 80
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 1492497
+    offsSz: 5969988
+    lineSz: 64
+    sideSz: 64
+    sideBwtSz: 48
+    sideBwtLen: 192
+    numSides: 124375
+    numLines: 124375
+    ebwtTotLen: 7960000
+    ebwtTotSz: 7960000
+    color: 0
+    reverse: 1
+Total time for backward call to driver() for mirror index: 00:00:12
+```
