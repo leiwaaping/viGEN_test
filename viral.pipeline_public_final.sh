@@ -4,6 +4,7 @@
 functionBowtie2() {
     echo "Start - Align to viral reference using Bowtie2 local algin"
     bowtie2 -x ${BOWTIE2_REF} --local -1 ${I_FOLDER}${ID}_1.fastq -2 ${I_FOLDER}${ID}_2.fastq --threads ${N_THREAD} --al ${O_FOLDER}${ID}/${ID}.bowtie2.align --un ${O_FOLDER}${ID}/${ID}.Bowtie2.unaligned -S ${O_FOLDER}${ID}/${ID}.bowtie2.sam --sensitive
+ #   bowtie2 -x ${BOWTIE2_REF} --local -1 ${I_FOLDER}${ID}_1.fastq -2 ${I_FOLDER}${ID}_2.fastq --threads ${N_THREAD} --al ${O_FOLDER}${ID}/${ID}.bowtie2.align --un ${O_FOLDER}${ID}/${ID}.Bowtie2.unaligned -S ${O_FOLDER}${ID}/${ID}.bowtie2.sam --sensitive
     echo "End "
 }
 
@@ -41,8 +42,8 @@ functionIdxStatsBam() {
 
 ########################################
 # Values to set by the user
-N_THREAD=20
-I_FOLDER="~/../../data/HPli_data/SRA/"
+N_THREAD=15
+I_FOLDER="~/../../data/HPli_data/bam/"
 O_FOLDER="output/"
 
 LOG=$O_FOLDER$ID/"pipeline_log.txt"
@@ -51,8 +52,9 @@ ERR3="log.bowtie2.txt"
 #SAMTOOLS="~/.conda/envs/bioinenv/bin/"
 #BOWTIE2_SW="~/.conda/envs/bioinenv/bin/"
 BOWTIE2_REF="./3_Get.viral.reference/viral.bowtie2.ref/virus.bowtie2.ref"
-		
-for x in $(cat samplenames.txt)
+#bash bowtie2.sh &&
+
+for x in $(cat file.list)
 do
     echo $x
     ID=${x%*}
@@ -64,7 +66,7 @@ do
     
     mkdir $O_FOLDER$ID
 
-    functionBowtie2 &&
+    #`functionBowtie2 &&
 
     functionConvertSamtoBam &&
 
@@ -75,7 +77,10 @@ do
     functionIdxStatsBam &&
 
     #functionFlagstatBam &&
-    
+    #rm ${O_FOLDER}${ID}/*.alig*
+    rm ${O_FOLDER}${ID}/*.bam
+    rm ${O_FOLDER}${ID}/*.bai
+
     END=$(date +%s)
     DIFF=$((($END-$START)/60))
     echo "It took $DIFF minutes"
