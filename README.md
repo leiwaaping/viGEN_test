@@ -90,13 +90,25 @@ files download in https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcE
 - ***software***: [bowtie2] ,[Samtools]
 - ***process***: normal samtools process, you can use the shell script provided ```viral.pipeline_public_final.sh``` that encompasses all of these steps.
 
-normal samtools process:  
+```
+$ ls
+3_Get.viral.reference  bowtie.sh    count.sh   nohup.out  output RSEM_tutorial file.list  normal.txt  Rsem_ref_hg19  viGEN  viral.pipeline_public_final.sh
+$ ls Rsem_ref_hg19/
+Rsem_ref_hg19.1.ebwt  Rsem_ref_hg19.4.ebwt   Rsem_ref_hg19.idx.fa      Rsem_ref_hg19.seq             RSEMRef.stderr.txt.docx
+Rsem_ref_hg19.2.ebwt  Rsem_ref_hg19.chrlist  Rsem_ref_hg19.rev.1.ebwt  Rsem_ref_hg19.ti              RSEMRef.stdout.txt.docx
+Rsem_ref_hg19.3.ebwt  Rsem_ref_hg19.grp      Rsem_ref_hg19.rev.2.ebwt  Rsem_ref_hg19.transcripts.fa
+$ ls 3_Get.viral.reference/
+viGen_ref.txt  viral.bowtie2.ref  viral.bwa.ref  viruses.dict  viruses.fa  viruses.fa.fai
+$head file.list
+SRR1946637  
+SRR1946638  
+SRR1946639  
 ```
 
-```
 error：Segmentation fault (core dumped) (ERR): bowtie2-align exited with value 139  
 it happens when you deal with a group project,did not effect sigle task,you need to update your samtools version to fix this problem.  
-
+error：Segmentation fault (core dumped) (ERR): bowtie2-align exited with value 1
+check your option and parameter please
 
 ***you can choose method 2-1(align to humman ref first and get unmap.fastq, then re-align to viral reference to get an bam file )  or method 2-2 (align to vrial refernece directory to get the bam file),or both***
 
@@ -136,3 +148,29 @@ Headers:
     reverse: 1
 Total time for backward call to driver() for mirror index: 00:00:12
 ```
+
+## output and statistic analysis
+
+output file
+```
+ll output/SRR1946637/
+total 44
+log.bowtie2.txt
+SRR1946637.bowtie2.idxstats.txt
+system.err.bowtie2.txt
+$ head output/SRR1946637/*.id*
+
+##header:a virus sequence name, sequence length, # mapped reads and # unmapped reads
+gi|10313991|ref|NC_002549.1|	18959	0	0
+gi|106060735|ref|NC_001959.2|	7654	32 0
+gi|10937870|ref|NC_001796.2|	15462	0	0
+gi|109390382|ref|NC_008188.1|	7263	0	0
+gi|109390389|ref|NC_008189.1|	7259	450	0
+gi|110645916|ref|NC_001401.2|	4679	2	0
+gi|11528013|ref|NC_001563.2|	10962	0	0
+gi|11545722|ref|NC_002617.1|	15186	0	
+gi|119952252|ref|NC_008719.1|	10793	3	0
+gi|119952254|ref|NC_008718.1|	10510	0	0
+```
+use ```$bash count.sh``` can get the sum of column 3(#mapped read) of *.bowtie2.idxstats.txt* file
+
